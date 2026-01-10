@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: ${APPLICATION_NAME:mailing_service}
+    name: ${APPLICATION_NAME:mailing-service}
 
 logging:
   pattern:
