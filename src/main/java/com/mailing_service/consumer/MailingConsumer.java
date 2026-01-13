@@ -19,8 +19,8 @@ public class MailingConsumer {
     @KafkaListener(topics = "mailing", groupId = "mailing-group")
     public void consume(@Payload MailDto message,
                         Acknowledgment acknowledgement) {
-        try {
 
+        try {
             log.info("Message received: " + message);
 
             mailingService.sendMail(message);
