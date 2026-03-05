@@ -2,5 +2,5 @@ package com.mailing_service.constant;
 
 public class ExceptionConstant {
 
-    public static final String EMAIL_NOT_FOUND = "Email not found: ";
+    public static final String FAILED_TO_SEND_MAIL = "Failed to send mail to: ";
 }

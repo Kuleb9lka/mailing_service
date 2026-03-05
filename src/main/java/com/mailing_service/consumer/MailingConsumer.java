@@ -21,7 +21,7 @@ public class MailingConsumer {
                         Acknowledgment acknowledgement) {
 
         try {
-            log.info("Message received: " + message);
+            log.info("Message received: " + message.getEmail());
 
             mailingService.sendMail(message);
             log.info("Message sent to {}", message.getEmail());

@@ -15,9 +15,8 @@ public class MailingController {
 
     private final MailingService mailingService;
 
-    @PostMapping("/registration")
-    public void checkEmailByRegistrationMail(@RequestBody MailDto mailDto){
-
-        mailingService.sendMail(mailDto);
+    @PostMapping("/sender")
+    public void sendMail(@RequestBody MailDto dto) {
+        mailingService.sendMail(dto);
     }
 }

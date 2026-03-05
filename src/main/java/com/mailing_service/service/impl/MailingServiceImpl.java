@@ -2,12 +2,11 @@ package com.mailing_service.service.impl;
 
 import com.mailing_service.constant.ExceptionConstant;
 import com.mailing_service.dto.MailDto;
-import com.mailing_service.exception.EmailNotFoundException;
+import com.mailing_service.exception.SendingMailException;
 import com.mailing_service.service.MailingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class MailingServiceImpl implements MailingService {
 
     private final JavaMailSender mailSender;
 
-    @Value("${spring.,ail.sender.email}")
+    @Value("${spring.mail.sender.email}")
     private String senderMail;
 
     @Override
@@ -42,11 +41,11 @@ public class MailingServiceImpl implements MailingService {
 
             log.info("Mail was successfully sent");
 
-        } catch (MailSendException e) {
+        } catch (Exception e) {
 
-            log.error("Sending message exception {}", e.getMessage(), e);
+            log.error("Sending mail exception {}", e.getMessage(), e);
 
-            throw new EmailNotFoundException(ExceptionConstant.EMAIL_NOT_FOUND + dto.getEmail());
+            throw new SendingMailException(ExceptionConstant.FAILED_TO_SEND_MAIL + dto.getEmail());
         }
     }
 }
