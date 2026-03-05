@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 public class ServiceLogging {
 
     @Pointcut("execution(public * com.mailing_service.service.*.*(..))")
-    public void serviceLayer(){}
+    public void serviceLayer() {
+    }
 
     @Around("serviceLayer()")
-    public Object logServiceLayer(ProceedingJoinPoint joinPoint) throws Throwable{
+    public Object logServiceLayer(ProceedingJoinPoint joinPoint) throws Throwable {
 
         String signature = joinPoint.getSignature().toShortString();
         long startTime = System.currentTimeMillis();
