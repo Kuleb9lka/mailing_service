@@ -15,14 +15,13 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
-        spring.json.trusted.packages: "com.auth_service.dto, com.mailing_service.dto"#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        spring.json.trusted.packages: "com.auth_service.dto, com.mailing_service.dto"
         spring.json.fail-on-unknown-properties: false
-        spring.json.value.default.type: com.mailing_service.dto.MailDto  #!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        spring.json.type.mapping: com.auth_service.dto.MailDto:com.mailing_service.dto.MailDto #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        spring.json.value.default.type: com.mailing_service.dto.MailDto
+        spring.json.type.mapping: com.auth_service.dto.MailDto:com.mailing_service.dto.MailDto
     listener:
       ack-mode: manual
       concurrency: 3
-      type: single
       missing-topics-fatal: false
     retry:
       topic:
@@ -31,15 +30,15 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}!!!!!!!!!!!!!!!
-    password: ${MAIL_PASSWORD}!!!!!!!!!!!!!!!
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     test-connection: true
     properties:
       mail:
         smtp:
-          mail.smtp.connectiontimeout: 5000
-          mail.smtp.timeout: 5000
-          mail.smtp.writetimeout: 5000
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
           auth: true
           starttls:
             enable: true
@@ -60,6 +59,7 @@ eureka:
     initial-instance-info-replication-interval-seconds: 5
     service-url:
       defaultZone: ${EUREKA_HOST_URL:http://localhost:8761/eureka/}
+    enabled: true
 
 kafka-topics:
   mailing: mailing
